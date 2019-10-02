@@ -17,5 +17,5 @@ You can export your conversations history with all members, even if they locked 
 1. Download latest version https://github.com/ichensky/msteams_history/releases
 2. Run `MSTeamsHistory.exe`
 3. Press `Export` button. 
-4. Enter your domain loging/password.
+4. Enter your domain login/password.
 5. And you'll find your conversations history in the `MSTeamsHistory` directory.  
