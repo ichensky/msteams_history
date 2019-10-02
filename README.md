@@ -1,5 +1,5 @@
 # MSTeams conversations history
-Export all conservations from [Microsoft Teams](https://teams.microsoft.com) using active directory and [microsoft graph api](https://docs.microsoft.com/en-us/graph/overview).
+Export all conversations from [Microsoft Teams](https://teams.microsoft.com) using active directory and [microsoft graph api](https://docs.microsoft.com/en-us/graph/overview).
 
 ## Problems
 1. Microsoft Teams does not keep conversations history at your PC. 
