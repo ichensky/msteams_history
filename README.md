@@ -5,7 +5,7 @@ Export all conversations from [Microsoft Teams](https://teams.microsoft.com) usi
 1. Microsoft Teams does not keep conversations history at your PC. 
 1. Microsoft Teams does not provide functionality to export your conversations history. 
 2. If any member locked in the active directory(for ex., because he left the company) 
-you couldn't even view any messages with this member through Microsoft Teams client(web or desctop). 
+you couldn't even view any messages with this member through Microsoft Teams client(web or descktop). 
 
 ## How will this script help?
 You can export your conversations history with all members, even if they locked in the active directory.
