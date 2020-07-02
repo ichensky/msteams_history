@@ -12,9 +12,9 @@ namespace MSTeamsHistory.Models.Graph.Chats
         public object Topic { get; set; }
 
         [JsonProperty("createdDateTime")]
-        public DateTimeOffset CreatedDateTime { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
 
         [JsonProperty("lastUpdatedDateTime")]
-        public DateTimeOffset LastUpdatedDateTime { get; set; }
+        public DateTimeOffset? LastUpdatedDateTime { get; set; }
     }
 }
