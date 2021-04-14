@@ -27,8 +27,8 @@ namespace MSTeamsHistory
         string path = $@"C:\Users\{Environment.UserName}\Desktop\MSTeamsHistory";
 
         //Set the scope for API call to user.read
-        string[] scopes = new string[] { 
-            "user.read", 
+        string[] scopes = new string[] {
+            "user.read",
             "Chat.Read"
         };
 
@@ -133,12 +133,12 @@ namespace MSTeamsHistory
                         do
                         {
                             messages = await LoadItems<Message>(messages.OdataNextLink.ToString(), authResult.AccessToken);
-                            if (messages.OdataCount==0)
+                            if (messages.OdataCount == 0)
                             {
                                 break;
                             }
                             listMessages.AddRange(messages.Value);
-                        }while(true);
+                        } while (true);
                     }
 
                     var x_messages = listMessages.OrderBy(x => x.CreatedDateTime).ToList();
@@ -146,8 +146,8 @@ namespace MSTeamsHistory
 
                     var members = await LoadItems<Member>($"https://graph.microsoft.com/beta/me/chats/{chat.Id}/members", authResult.AccessToken);
 
-                    if (members.Value!=null&&
-                        members.Value.Count>0&& x_messages.Count>0)
+                    if (members.Value != null &&
+                        members.Value.Count > 0 && x_messages.Count > 0)
                     {
                         System.IO.File.WriteAllText(Path.Combine(chatDirPath, "members.json"), JsonConvert.SerializeObject(members.Value));
                         var arr = members.Value.Where(x => x.UserId.ToString() != me.Id).ToList();
@@ -155,27 +155,40 @@ namespace MSTeamsHistory
                         if (arr.Count > 0)
                         {
                             history = string.Join(",", arr.Select(x => x.DisplayName));
-                            if (history.Length>100)
+                            if (history.Length > 100)
                             {
-                                history = history.Remove(100)+"...";
+                                history = history.Remove(100) + "...";
                             }
                         }
                         if (string.IsNullOrEmpty(history))
                         {
                             history = "history";
                         }
-                            var data = x_messages.Select(x =>
-                            {
-                                var text = System.Net.WebUtility.HtmlDecode(x.Body.Content.StripHTML());
-                                text = Regex.Replace(text, @"^\s+$[\r\n]*", string.Empty, RegexOptions.Multiline);
-                                var str = $"{x.CreatedDateTime?.ToString("yyyy-MM-dd HH:mm:ss")} {text}";
-                                return str;
-                            });
-                            System.IO.File.WriteAllLines(Path.Combine(chatDirPath, $"{history}.txt"), data);
+                        var data = x_messages.Select(x =>
+                        {
+                            var text = System.Net.WebUtility.HtmlDecode(x.Body.Content.StripHTML());
+                            text = Regex.Replace(text, @"^\s+$[\r\n]*", string.Empty, RegexOptions.Multiline);
+                            var str = $"{x.CreatedDateTime?.ToString("yyyy-MM-dd HH:mm:ss")} {text}";
+                            return str;
+                        });
+                        history = removeInvalidChars(history);
+                        System.IO.File.WriteAllLines(Path.Combine(chatDirPath, $"{history}.txt"), data);
                     }
                 }
                 LogText.Text = "Done.";
             }
+        }
+
+        private static string removeInvalidChars(string s)
+        {
+            string invalid = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+
+            foreach (char c in invalid)
+            {
+                s = s.Replace(c.ToString(), String.Empty);
+            }
+
+            return s;
         }
 
         /// <summary>
@@ -205,12 +218,12 @@ namespace MSTeamsHistory
 
         public async Task<Items<T>> LoadItems<T>(string url, string token) where T : new()
         {
-            begin:
-            var str = await GetHttpContentWithToken(url,token);
+        begin:
+            var str = await GetHttpContentWithToken(url, token);
             var obj = JsonConvert.DeserializeObject<Items<T>>(str);
-            if (obj.Error!=null)
+            if (obj.Error != null)
             {
-                if (obj.Error.Code== "TooManyRequests")
+                if (obj.Error.Code == "TooManyRequests")
                 {
                     LogText.Text = "too many requests to server," + Environment.NewLine
                         + "sleeping for the 30sec..";
