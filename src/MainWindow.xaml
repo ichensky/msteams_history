@@ -3,19 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MSTeamsHistory"
         mc:Ignorable="d"
         Title="MainWindow" Height="Auto" Width="525" SizeToContent="Height">
     <Grid>
         <StackPanel Background="Azure">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button x:Name="CallGraphButton" Content="Export `Microsoft Teams` history" HorizontalAlignment="Right" Padding="5" Click="CallGraphButton_Click" Margin="5" FontFamily="Segoe Ui"/>
-                <Button x:Name="SignOutButton" Content="Sign-Out" HorizontalAlignment="Right" Padding="5" Click="SignOutButton_Click" Margin="5" Visibility="Collapsed" FontFamily="Segoe Ui"/>
+                <Button x:Name="CallGraphButton" Content="Export `Microsoft Teams` history" HorizontalAlignment="Right"
+                        Padding="5" Click="CallGraphButton_Click" Margin="5" FontFamily="Segoe Ui" />
+                <Button x:Name="SignOutButton" Content="Sign-Out" HorizontalAlignment="Right" Padding="5"
+                        Click="SignOutButton_Click" Margin="5" Visibility="Collapsed" FontFamily="Segoe Ui" />
             </StackPanel>
             <Label Content="History path" Margin="0,0,0,-5" FontFamily="Segoe Ui" />
-            <TextBox x:Name="HistoryText" TextWrapping="Wrap" MinHeight="60" Margin="5" FontFamily="Segoe Ui"/>
+            <TextBox x:Name="HistoryText" TextWrapping="Wrap" MinHeight="60" Margin="5" FontFamily="Segoe Ui" />
             <Label Content="Log" Margin="0,0,0,-5" FontFamily="Segoe Ui" />
-            <TextBox x:Name="LogText" TextWrapping="Wrap" MinHeight="120" Margin="5" FontFamily="Segoe Ui"/>
+            <TextBox x:Name="LogText" TextWrapping="Wrap" MinHeight="120" Margin="5" FontFamily="Segoe Ui" />
         </StackPanel>
     </Grid>
 </Window>
