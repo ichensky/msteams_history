@@ -10,7 +10,7 @@ namespace MSTeamsHistory.Models.Graph.Members
         public string OdataType { get; set; }
 
         [JsonProperty("id")]
-        public Guid Id { get; set; }
+        public String Id { get; set; }
 
         [JsonProperty("roles")]
         public List<object> Roles { get; set; }
